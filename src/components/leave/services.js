@@ -1,4 +1,4 @@
-[
+export const services = [
     {
         "_id": "635a0c0b64a6d231228942ae",
         "service_id": "04",
