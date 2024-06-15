@@ -53,7 +53,8 @@ const Navbar = () => {
                     <IoCartOutline size={30} />
                     <IoSearch size={30} />
                 </div>
-                <a class="btn btn-outline btn-primary">Appointment</a>
+                <Link href={'/'} className="btn btn-outline btn-primary mr-2 duration-300">Appointment</Link>
+                <Link href={`/`} className="btn btn-primary duration-300">Login</Link>
             </div>
         </div>
     );
