@@ -38,7 +38,7 @@ const LoginPage = () => {
                             <button><FaGoogle size={25} className='text-green-500 hover:scale-110' /></button>
                             <button><FaLinkedin size={25} className='text-blue-400 hover:scale-110' /></button>
                         </div>
-                        <p className='text-center my-2'>New To Cars Doctor? <Link href='/signUP' className='text-[#ff3811] font-bold hover:underline'>Sign Up</Link></p>
+                        <p className='text-center my-2'>New To Cars Doctor? <Link href='/signUp' className='text-[#ff3811] font-bold hover:underline'>Sign Up</Link></p>
                     </form>
                 </div>
             </div>
