@@ -17,5 +17,5 @@ export const connectDb = async () => {
     }
     catch (err) {
         return console.log(err);
-    }
+    };
 };

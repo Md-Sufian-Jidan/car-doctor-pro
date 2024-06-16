@@ -5,7 +5,7 @@ import React from 'react';
 import { FaFacebook, FaGithub, FaGoogle, FaLinkedin } from 'react-icons/fa6';
 
 const SignUpPage = () => {
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
         const newUser = {
@@ -14,7 +14,14 @@ const SignUpPage = () => {
             password: form.password.value,
         };
         console.log(newUser);
-        console.log('login');
+        const resp = await fetch("http://localhost:3000/signUp/api", {
+            method: "POST",
+            body: JSON.stringify(newUser),
+            headers: {
+                "content-type": "application/json"
+            }
+        })
+        console.log(resp);
     };
 
     return (

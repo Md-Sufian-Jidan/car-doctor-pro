@@ -30,9 +30,6 @@ const Navbar = () => {
     return (
         <div class="navbar bg-violet-100 rounded-2xl text-black fixed max-w-7xl mx-auto z-50">
             <div class="navbar-start">
-                <Link href="/">
-                    <Image src={`/public/assets/logo.svg`} height={50} width={100} alt='logo' />
-                </Link>
                 <div class="dropdown">
                     <div tabindex="0" role="button" className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" stroke-linejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -41,6 +38,9 @@ const Navbar = () => {
                         {navLinks?.map(item => <Link href={item?.path} key={item?.path}>{item?.title}</Link>)}
                     </ul>
                 </div>
+                <Link href="/">
+                    <Image src={`/public/assets/logo.svg`} height={50} width={50} alt='logo' />
+                </Link>
                 <Link href="/" className="text-xl">CarDoctor</Link>
             </div>
             <div class="navbar-center hidden lg:flex">
@@ -54,7 +54,7 @@ const Navbar = () => {
                     <IoSearch size={30} />
                 </div>
                 <Link href={'/'} className="btn btn-outline btn-primary mr-2 duration-300">Appointment</Link>
-                <Link href={`/`} className="btn btn-primary duration-300">Login</Link>
+                <Link href={`/login`} className="btn btn-primary duration-300">Login</Link>
             </div>
         </div>
     );

@@ -14,8 +14,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="carDoctorTheme">
-      <AuthProvider>
-        <body className={`${inter.className} max-w-7xl mx-auto`}>
+      <body className={`${inter.className} max-w-7xl mx-auto`}>
+        <AuthProvider>
           <div className="h-24">
             <Navbar />
           </div>
@@ -23,8 +23,8 @@ export default function RootLayout({ children }) {
             {children}
           </div>
           <Footer />
-        </body>
-      </AuthProvider>
+        </AuthProvider>
+      </body>
     </html>
   );
 }
