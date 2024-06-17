@@ -5,6 +5,7 @@ export const connectDb = async () => {
     if (db) return db;
     try {
         const uri = process.env.NEXT_PUBLIC_MONGODB_URI
+        console.log(uri);
         const client = new MongoClient(uri, {
             serverApi: {
                 version: ServerApiVersion.v1,
