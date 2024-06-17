@@ -1,4 +1,5 @@
 'use client'
+import SocialSignIn from '@/components/Shared/SocialSignIn';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -29,10 +30,7 @@ const SignUpPage = () => {
             <div className='grid lg:grid-cols-2 grid-cols-1 gap-12'>
                 <div className='border-2 border-orange-200 rounded-lg p-12'>
                     <div className='flex justify-center gap-10 mb-3'>
-                        <button><FaFacebook size={25} className='text-blue-500 hover:scale-110' /></button>
-                        <button><FaGithub size={25} className='text-black hover:scale-110' /></button>
-                        <button><FaGoogle size={25} className='text-green-500 hover:scale-110' /></button>
-                        <button><FaLinkedin size={25} className='text-blue-400 hover:scale-110' /></button>
+                       <SocialSignIn />
                     </div>
                     <div className="divider">Or Sign In With</div>
                     <form onSubmit={handleSubmit} className="card-body">

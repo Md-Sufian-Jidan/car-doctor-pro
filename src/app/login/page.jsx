@@ -2,12 +2,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { FaFacebook, FaGithub, FaGoogle, FaLinkedin } from 'react-icons/fa6';
 import { signIn } from 'next-auth/react';
 import { redirect } from 'next/dist/server/api-utils';
+import { useRouter } from 'next/navigation';
+import SocialSignIn from '@/components/Shared/SocialSignIn';
 
 const LoginPage = () => {
-    const handleSubmit = async(e) => {
+    const router = useRouter();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
@@ -18,6 +21,9 @@ const LoginPage = () => {
             password,
             redirect: false
         })
+        if (resp?.status === 200) {
+            return router.push('/');
+        }
         console.log(resp);
     };
     return (
@@ -49,10 +55,7 @@ const LoginPage = () => {
                         </div>
                         <div className="divider">Or Sign In With</div>
                         <div className='flex justify-center gap-10 mb-3'>
-                            <button><FaFacebook size={25} className='text-blue-500 hover:scale-110' /></button>
-                            <button><FaGithub size={25} className='text-black hover:scale-110' /></button>
-                            <button><FaGoogle size={25} className='text-green-500 hover:scale-110' /></button>
-                            <button><FaLinkedin size={25} className='text-blue-400 hover:scale-110' /></button>
+                            <SocialSignIn />
                         </div>
                         <p className='text-center my-2'>New To Cars Doctor? <Link href='/signUp' className='text-[#ff3811] font-bold hover:underline'>Sign Up</Link></p>
                     </form>
