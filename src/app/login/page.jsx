@@ -3,15 +3,22 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { FaFacebook, FaGithub, FaGoogle, FaLinkedin } from 'react-icons/fa6';
+import { signIn } from 'next-auth/react';
+import { redirect } from 'next/dist/server/api-utils';
 
 const LoginPage = () => {
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
-        console.log('login');
+        const resp = await signIn("credentials", {
+            email,
+            password,
+            redirect: false
+        })
+        console.log(resp);
     };
     return (
         <div className='p-24'>
