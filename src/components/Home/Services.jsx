@@ -1,11 +1,6 @@
 import React from 'react';
 import ServiceCard from '../cards/ServiceCard';
-
-const getServices = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVICES}`)
-    const services = res.json();
-    return services;
-};
+import { getServices } from '@/services/getServices';
 
 const Services = async () => {
 
