@@ -35,14 +35,36 @@ const handler = NextAuth({
         GitHubProvider({
             clientId: process.env.NEXT_PUBLIC_GITHUB_ID,
             clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET
-        })
+        }),
     ],
-    callbacks: {
-        pages: {
-            signIn: '/login',
-        },
+    pages: {
+        signIn: '/login',
     },
-    pages: {},
+    callbacks: {
+        async signIn({ user, account }) {
+            if (account?.provider === "google" || account?.provider === "github") {
+                const { email } = user;
+                try {
+                    const db = await connectDb();
+                    const userCollection = await db.collection('users');
+                    const userExists =  userCollection.findOne({ email });
+                    if (!userExists) {
+                        const res = await userCollection.insertOne(user);
+                        return user;
+                    }
+                    else {
+                        return user;
+                    }
+                }
+                catch (error) {
+                    console.log(error);
+                }
+            }
+            else {
+                return user;
+            }
+        }
+    },
 });
 
 export { handler as GET, handler as POST };

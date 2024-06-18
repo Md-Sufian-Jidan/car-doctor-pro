@@ -1,9 +1,16 @@
 import React from 'react';
-import { services } from '../leave/services';
 import ServiceCard from '../cards/ServiceCard';
 
-const Services = () => {
-    console.log(services);
+const getServices = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVICES}`)
+    const services = res.json();
+    return services;
+};
+
+const Services = async () => {
+
+    const data = await getServices();
+    console.log(data);
     return (
         <div className='text-slate-800'>
             <div className='container mx-auto text-center space-y-4'>
@@ -13,7 +20,7 @@ const Services = () => {
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-5'>
                 {
-                    services?.map((ser) => <ServiceCard key={ser?._id} service={ser} />)
+                    data?.map((ser) => <ServiceCard key={ser?._id} service={ser} />)
                 }
             </div>
         </div>

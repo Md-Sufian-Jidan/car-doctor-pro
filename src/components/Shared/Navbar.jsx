@@ -36,6 +36,7 @@ const Navbar = () => {
                     <IoSearch size={30} />
                 </div>
                 <Link href={'/'} className="btn btn-outline btn-primary mr-2 duration-300">Appointment</Link>
+                {/* {!session?.status === "loading" && <h3>Loading...</h3>} */}
                 {!session?.data ?
                     <Link href={`/login`} className="btn btn-primary duration-300">Login</Link>
                     : <button onClick={() => signOut()} className="btn bg-pink-500 text-black hover:text-white hover:bg-indigo-300 duration-300">Log out</button>

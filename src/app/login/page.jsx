@@ -53,12 +53,10 @@ const LoginPage = () => {
                         <div className="form-control mt-6">
                             <button type='submit' className="btn btn-primary">Login</button>
                         </div>
-                        <div className="divider">Or Sign In With</div>
-                        <div className='flex justify-center gap-10 mb-3'>
-                            <SocialSignIn />
-                        </div>
-                        <p className='text-center my-2'>New To Cars Doctor? <Link href='/signUp' className='text-[#ff3811] font-bold hover:underline'>Sign Up</Link></p>
                     </form>
+                    <div className="divider">Or Sign In With</div>
+                    <SocialSignIn />
+                    <p className='text-center my-2'>New To Cars Doctor? <Link href='/signUp' className='text-[#ff3811] font-bold hover:underline'>Sign Up</Link></p>
                 </div>
             </div>
         </div>

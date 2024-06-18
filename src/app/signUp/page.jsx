@@ -3,7 +3,7 @@ import SocialSignIn from '@/components/Shared/SocialSignIn';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { FaFacebook, FaGithub, FaGoogle, FaLinkedin } from 'react-icons/fa6';
+// import { FaFacebook, FaGithub, FaGoogle, FaLinkedin } from 'react-icons/fa6';
 
 const SignUpPage = () => {
     const handleSubmit = async (e) => {
@@ -29,9 +29,7 @@ const SignUpPage = () => {
         <div className='p-24'>
             <div className='grid lg:grid-cols-2 grid-cols-1 gap-12'>
                 <div className='border-2 border-orange-200 rounded-lg p-12'>
-                    <div className='flex justify-center gap-10 mb-3'>
-                       <SocialSignIn />
-                    </div>
+                    <SocialSignIn />
                     <div className="divider">Or Sign In With</div>
                     <form onSubmit={handleSubmit} className="card-body">
                         <div className="form-control">

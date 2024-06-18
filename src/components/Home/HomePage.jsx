@@ -5,11 +5,11 @@ import Services from './Services';
 
 const HomePage = () => {
     return (
-        <div>
+        <>
             <Banner />
             <About />
             <Services />
-        </div>
+        </>
     );
 };
 
