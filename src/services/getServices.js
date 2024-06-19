@@ -4,7 +4,8 @@ export const getServices = async () => {
     return services;
 };
 
-export const getServicesDetails = async () => {
+export const getServicesDetails = async (id) => {
+    console.log(id);
     const res = await fetch(`${process.env.NEXT_PUBLIC_SINGLE_SERVICES}/${id}`)
     const services = res.json();
     return services;

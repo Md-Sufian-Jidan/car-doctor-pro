@@ -3,9 +3,7 @@ import ServiceCard from '../cards/ServiceCard';
 import { getServices } from '@/services/getServices';
 
 const Services = async () => {
-
     const data = await getServices();
-    console.log(data);
     return (
         <div className='text-slate-800'>
             <div className='container mx-auto text-center space-y-4'>
