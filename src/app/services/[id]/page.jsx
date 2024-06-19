@@ -2,16 +2,17 @@ import { getServicesDetails } from '@/services/getServices';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+
 export const metadata = {
     title: "Service Detail",
     description: "Details of services",
 };
 
 const singleServicePage = async ({ params }) => {
-    console.log(params.id);
+    // console.log(params.id);
     const details = await getServicesDetails(params?.id)
-    const { img, price, title, description, facility, _id } = details
-    // console.log(details);
+    const { _id, img, price, title, description, facility } = details || {}
+    console.log(details);
     return (
         <>
             <div className="hero h-44 mb-3 relative text-white rounded-xl" style={{ backgroundImage: `url(${img})` }}>

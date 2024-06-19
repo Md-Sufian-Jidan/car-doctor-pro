@@ -1,32 +1,64 @@
+'use client'
 import { getServicesDetails } from '@/services/getServices';
-import React from 'react';
+import { useSession } from 'next-auth/react';
+import React, { useEffect, useState } from 'react';
 
-const PaymentPage = async ({ params }) => {
-    const details = await getServicesDetails(params?.id);
-    const { img, _id } = details;
+const PaymentPage = ({ params }) => {
+    const { data } = useSession();
+    const [service, setService] = useState({});
+
+    const loadService = async () => {
+        const details = await getServicesDetails(params?.id);
+        return setService(details);
+    };
+    const { img, price } = service;
+    const handleBooking = async (e) => {
+        e.preventDefault();
+        console.log('from submitted');
+    };
+
+    useEffect(() => {
+        loadService();
+    }, [params]);
+
     return (
         <div>
-            <div className="hero h-44 mb-3 relative text-white rounded-xl" style={{ backgroundImage: `url(${img})` }}>
+            <div className="hero h-44 mb-3 relative text-white rounded-xl"
+                style={{ backgroundImage: `url(${img})` }}>
                 <div className="hero-overlay bg-opacity-60 bg-gradient-to-br from-[#151515ff] to-[#15151500]"></div>
                 <div className="hero-content">
-                    <h4 className='text-5xl'>Checkout Details</h4>
+                    <h4 className='text-5xl'>Checkout</h4>
                 </div>
                 <div className='absolute bottom-0 bg-[#FF3811] p-3 rounded-t-xl'>Home/Service</div>
             </div>
             <div className="card shrink-0 w-full max-w-5xl mx-auto shadow-xl bg-[#F3F3F3] p-10 my-3">
-                <form className="card-body space-y-5">
+                <form onSubmit={handleBooking} className="card-body">
                     <div className='grid grid-cols-2 gap-5'>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">First Name</span>
+                                <span className="label-text">Name</span>
                             </label>
-                            <input type="text" placeholder="First Name" className="input input-bordered" required />
+                            <input defaultValue={data?.user?.name} type="text" placeholder="Name" name='name' className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Last Name</span>
+                                <span className="label-text">Date</span>
                             </label>
-                            <input type="text" placeholder="Last Name" className="input input-bordered" required />
+                            <input defaultValue={new Date().toLocaleDateString()} type="date" placeholder="Date" name='date' className="input input-bordered" required />
+                        </div>
+                    </div>
+                    <div className='grid grid-cols-2 gap-5'>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Your Email</span>
+                            </label>
+                            <input type="email" defaultValue={data?.user?.email} placeholder="Your Email" name='email' className="input input-bordered" required />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Due Amount</span>
+                            </label>
+                            <input defaultValue={price} type="number" placeholder="Due amount" name='dueAmount' className="input input-bordered" required />
                         </div>
                     </div>
                     <div className='grid grid-cols-2 gap-5'>
@@ -34,18 +66,19 @@ const PaymentPage = async ({ params }) => {
                             <label className="label">
                                 <span className="label-text">Your Phone</span>
                             </label>
-                            <input type="number" placeholder="Your Name" className="input input-bordered" required />
+                            <input type="number" placeholder="Your Phone" name='phone' className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Your Email</span>
+                                <span className="label-text">Present Address</span>
                             </label>
-                            <input type="email" placeholder="Your Email" className="input input-bordered" required />
+                            <input type="text" placeholder="Present Address" name='address' className="input input-bordered" required />
                         </div>
+
                     </div>
-                    <textarea placeholder='Your Message' className='textarea textarea-bordered textarea-lg w-full'></textarea>
+                    <textarea placeholder='Your Message' className='textarea textarea-bordered textarea-lg w-full mt-3'></textarea>
                     <div className="form-control mt-6">
-                        <button className="btn btn-primary">Order Confirm</button>
+                        <button type='submit' className="btn btn-primary">Order Confirm</button>
                     </div>
                 </form>
             </div>
