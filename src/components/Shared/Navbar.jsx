@@ -7,7 +7,7 @@ import React from 'react';
 import { IoCartOutline, IoSearch } from 'react-icons/io5'
 const Navbar = () => {
     const session = useSession();
-    console.log(session);
+    // console.log(session);
 
     return (
         <div className="navbar bg-violet-100 rounded-2xl text-black fixed max-w-7xl mx-auto z-50">
@@ -17,7 +17,7 @@ const Navbar = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" stroke-linejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </div>
                     <ul tabIndex="0" className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                        {navLinks?.map(item => <Link href={item?.path} key={item?.path}>{item?.title}</Link>)}
+                        {navLinks?.map(item => <Link className='text-lg mx-2 font-semibold duration-300 hover:text-primary' href={item?.path} key={item?.path}>{item?.title}</Link>)}
                     </ul>
                 </div>
                 <Link href="/">

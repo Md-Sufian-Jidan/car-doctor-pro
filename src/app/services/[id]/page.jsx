@@ -12,7 +12,7 @@ const singleServicePage = async ({ params }) => {
     // console.log(params.id);
     const details = await getServicesDetails(params?.id)
     const { _id, img, price, title, description, facility } = details || {}
-    console.log(details);
+    // console.log(details);
     return (
         <>
             <div className="hero h-44 mb-3 relative text-white rounded-xl" style={{ backgroundImage: `url(${img})` }}>
@@ -22,8 +22,8 @@ const singleServicePage = async ({ params }) => {
                 </div>
                 <div className='absolute bottom-0 bg-[#FF3811] p-3 rounded-t-xl'>Home/Service</div>
             </div>
-            <div className='flex items-center gap-5 mb-3'>
-                <div className="max-w-4xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+            <div className='md:flex items-center gap-5 mb-3'>
+                <div className="md:max-w-4xl mx-5 overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
                     <Image src={img} width={1000} height={400} alt="Article" />
 
                     <div className="p-6">
@@ -35,9 +35,9 @@ const singleServicePage = async ({ params }) => {
                 <div>
                     <div>
                         {
-                            facility?.map((fac) => <div key={fac?.name} className="w-full max-w-sm px-4 py-3 bg-white rounded-md shadow-md my-2 dark:bg-gray-800 border border-t-2  border-t-orange-500">
+                            facility?.map((fac) => <div key={fac?.name} className="w-full max-w-sm mx-auto px-4 py-3 bg-white rounded-md shadow-md my-2 dark:bg-gray-800 border border-t-2  border-t-orange-500">
                                 <div className="flex items-center justify-between">
-                                    <span className="px-3 py-1 text-xs text-blue-800 uppercase bg-pink-200 rounded-full dark:bg-pink-300 dark:text-blue-900">* Facility</span>
+                                    <span className="px-3 py-1 text-xs text-blue-800 uppercase bg-pink-200 rounded-full dark:bg-gray-300 dark:text-blue-900">* Facility</span>
                                 </div>
 
                                 <div>
@@ -47,13 +47,11 @@ const singleServicePage = async ({ params }) => {
                             </div>)
                         }
                     </div>
-                    <div className='w-full text-center my-4 space-y-3 bg-slate-300 p-5 rounded'>
-                        <div class="mt-4">
-                            <div className="hero h-20 rounded" style={{ backgroundImage: `url(${img})` }}>
-                                <h2 className='text-3xl text-lime-300 text-left'>Price : ${price}</h2>
-                            </div>
+                    <div className='text-center mx-5 my-4 space-y-3 bg-slate-300 p-5 rounded'>
+                        <div className="hero h-20 rounded" style={{ backgroundImage: `url(${img})` }}>
                         </div>
-                        <Link href={`/payment/${_id}`} className='btn btn-primary w-full'>Proceed Checkout</Link>
+                        <h2 className='text-3xl text-black text-left'>Price : <span className='text-yellow-800'>${price}</span></h2>
+                        <Link href={`/checkout/${_id}`} className='btn btn-primary w-full'>Proceed Checkout</Link>
                     </div>
                 </div>
             </div>

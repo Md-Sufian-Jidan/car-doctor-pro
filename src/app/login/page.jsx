@@ -15,7 +15,6 @@ const LoginPage = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
         const resp = await signIn("credentials", {
             email,
             password,
