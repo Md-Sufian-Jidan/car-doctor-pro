@@ -12,7 +12,7 @@ const PaymentPage = ({ params }) => {
         return setService(details);
     };
     const { img, price } = service;
-    
+
     const handleBooking = async (e) => {
         e.preventDefault();
         const newBooking = {
@@ -41,7 +41,7 @@ const PaymentPage = ({ params }) => {
     }, [params]);
 
     return (
-        <div>
+        <>
             <div className="hero h-44 mb-3 relative text-white rounded-xl"
                 style={{ backgroundImage: `url(${img})` }}>
                 <div className="hero-overlay bg-opacity-60 bg-gradient-to-br from-[#151515ff] to-[#15151500]"></div>
@@ -101,7 +101,7 @@ const PaymentPage = ({ params }) => {
                     </div>
                 </form>
             </div>
-        </div>
+        </>
     );
 };
 
