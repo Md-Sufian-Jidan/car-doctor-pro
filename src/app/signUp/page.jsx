@@ -2,10 +2,13 @@
 import SocialSignIn from '@/components/Shared/SocialSignIn';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
+import { toast } from 'react-toastify';
 // import { FaFacebook, FaGithub, FaGoogle, FaLinkedin } from 'react-icons/fa6';
 
 const SignUpPage = () => {
+    const router = useRouter();
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
@@ -22,7 +25,13 @@ const SignUpPage = () => {
                 "content-type": "application/json"
             }
         })
-        console.log(resp);
+        const confirm = await resp.json();
+        console.log(confirm);
+        
+        if (confirm?.resp?.insertedId) {
+            router?.push('/')
+            return toast.success(confirm?.resp?.message);
+        }
     };
 
     return (

@@ -6,6 +6,7 @@ import { signIn } from 'next-auth/react';
 import { redirect } from 'next/dist/server/api-utils';
 import { useRouter } from 'next/navigation';
 import SocialSignIn from '@/components/Shared/SocialSignIn';
+import { ToastContainer, toast } from 'react-toastify';
 
 const LoginPage = () => {
     const router = useRouter();
@@ -21,9 +22,9 @@ const LoginPage = () => {
             redirect: false
         })
         if (resp?.status === 200) {
-            return router.push('/');
+            router.push('/');
+            return toast.success("login Successfully");
         }
-        console.log(resp);
     };
     return (
         <div className='p-24'>
@@ -58,6 +59,7 @@ const LoginPage = () => {
                     <p className='text-center my-2'>New To Cars Doctor? <Link href='/signUp' className='text-[#ff3811] font-bold hover:underline'>Sign Up</Link></p>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };

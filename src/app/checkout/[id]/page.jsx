@@ -2,6 +2,7 @@
 import { getServicesDetails } from '@/services/getServices';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 const PaymentPage = ({ params }) => {
     const { data } = useSession();
@@ -24,16 +25,18 @@ const PaymentPage = ({ params }) => {
             presentAddress: e.target.address.value,
             service: { ...service }
         };
-        console.log(newBooking);
+        // console.log(newBooking);
         const res = await fetch(`${process.env.NEXT_PUBLIC_CHECKOUT_API}`, {
             method: "POST",
             body: JSON.stringify(newBooking),
             headers: {
                 "content-type": "application/json"
             }
-        })
-        console.log(res);
-        // const data = await res.json();
+        });
+        const confirm = await res.json();
+        console.log(confirm?.message);
+        toast.success(confirm?.message);
+        e.target.reset();
     };
 
     useEffect(() => {
@@ -101,6 +104,7 @@ const PaymentPage = ({ params }) => {
                     </div>
                 </form>
             </div>
+            <ToastContainer />
         </>
     );
 };
