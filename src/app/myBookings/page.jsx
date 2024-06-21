@@ -1,5 +1,6 @@
 "use client"
 import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { FaDeleteLeft } from 'react-icons/fa6';
 import { ToastContainer, toast } from 'react-toastify';
@@ -17,7 +18,7 @@ const MyBookingsPage = () => {
 
     const handleDelete = async (id) => {
         console.log('188888888888888888888888', id);
-        const deleted = await fetch(`${process.env.NEXT_PUBLIC_DELETE_API}/${id}`, {
+        const deleted = await fetch(`${process.env.NEXT_PUBLIC_BOOKINGS_API}/${id}`, {
             method: "DELETE",
             body: JSON.stringify(id),
             headers: {
@@ -69,6 +70,9 @@ const MyBookingsPage = () => {
                                     <td>{ser?.dueAmount}</td>
                                     <td>{ser?.date}</td>
                                     <td>
+                                        <Link href={`/myBookings/update/${ser?._id}`}>
+                                            <button className='btn btn-primary'>Edit</button>
+                                        </Link>
                                         <button onClick={() => handleDelete(ser?._id)} className='btn btn-primary'><FaDeleteLeft /></button>
                                     </td>
                                 </tr>)
