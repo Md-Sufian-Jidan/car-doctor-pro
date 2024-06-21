@@ -10,7 +10,7 @@ const MyBookingsPage = () => {
     const [bookings, setBookings] = useState([]);
 
     const loadData = async () => {
-        const resp = await fetch(`${process.env.NEXT_PUBLIC_MYBOOKINGS_API}/${data?.user?.email}`);
+        const resp = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/myBookings/api/${data?.user?.email}`);
         const res = await resp.json();
         console.log(res);
         setBookings(res?.bookings)
@@ -18,7 +18,7 @@ const MyBookingsPage = () => {
 
     const handleDelete = async (id) => {
         console.log('188888888888888888888888', id);
-        const deleted = await fetch(`${process.env.NEXT_PUBLIC_BOOKINGS_API}/${id}`, {
+        const deleted = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/myBookings/api/booking${id}`, {
             method: "DELETE",
             body: JSON.stringify(id),
             headers: {

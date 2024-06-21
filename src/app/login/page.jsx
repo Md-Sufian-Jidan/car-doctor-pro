@@ -4,12 +4,14 @@ import Link from 'next/link';
 import React from 'react';
 import { signIn } from 'next-auth/react';
 import { redirect } from 'next/dist/server/api-utils';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import SocialSignIn from '@/components/Shared/SocialSignIn';
 import { ToastContainer, toast } from 'react-toastify';
 
 const LoginPage = () => {
     const router = useRouter();
+    const search = useSearchParams();
+    const path = search.get('redirect');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,12 +21,13 @@ const LoginPage = () => {
         const resp = await signIn("credentials", {
             email,
             password,
-            redirect: false
+            redirect: true,
+            callbackUrl: path ? path : '/',
         })
-        if (resp?.status === 200) {
-            router.push('/');
-            return toast.success("login Successfully");
-        }
+        return toast.success("login Successfully");
+        // if (resp?.status === 200) {
+        //     router.push('/');
+        // }
     };
     return (
         <div className='p-24'>

@@ -26,7 +26,7 @@ const PaymentPage = ({ params }) => {
             service: { ...service }
         };
         // console.log(newBooking);
-        const res = await fetch(`${process.env.NEXT_PUBLIC_CHECKOUT_API}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/checkout/api/newBooking`, {
             method: "POST",
             body: JSON.stringify(newBooking),
             headers: {

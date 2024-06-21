@@ -27,7 +27,7 @@ const UpdatePage = ({ params }) => {
             phone: e.target.phone.value,
             address: e.target.address.value,
         };
-        const resp = await fetch(`${process.env.NEXT_PUBLIC_BOOKINGS_API}/${params?.id}`, {
+        const resp = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/myBookings/api/booking/${params?.id}`, {
             method: "PATCH",
             body: JSON.stringify(updatedValue),
             headers: {

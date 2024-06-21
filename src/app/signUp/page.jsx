@@ -18,7 +18,7 @@ const SignUpPage = () => {
             password: form.password.value,
         };
         console.log(newUser);
-        const resp = await fetch("http://localhost:3000/signUp/api", {
+        const resp = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/signUp/api`, {
             method: "POST",
             body: JSON.stringify(newUser),
             headers: {

@@ -10,5 +10,6 @@ export const GET = async () => {
     }
     catch (error) {
         console.log(error);
+        return NextResponse.json({ message: "No Data Found", error });
     }
 };
