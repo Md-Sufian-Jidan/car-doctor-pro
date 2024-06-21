@@ -24,10 +24,10 @@ const LoginPage = () => {
             redirect: true,
             callbackUrl: path ? path : '/',
         })
-        return toast.success("login Successfully");
-        // if (resp?.status === 200) {
-        //     router.push('/');
-        // }
+        if (resp?.status === 200) {
+            router.push('/');
+            return toast.success("login Successfully");
+        }
     };
     return (
         <div className='p-24'>
